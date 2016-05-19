@@ -1,0 +1,94 @@
+<div 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content">
+
+<div id="map" style="width: 100%; height: 560px"></div>
+ 
+   
+<th:block layout:fragment="code">
+<script  th:src="@{~/leaflet/leaflet.js}"></script>
+<script  th:src="@{~/leaflet/test.js}"></script>
+
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+           
+//var map = L.map('map').setView([14.683193,-17.458986], 13);
+var map = L.map('map').setView([-17.458986,14.683193], 13);
+
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+		
+
+		function onEachFeature(feature, layer) {
+			var popupContent = "<div>Matricule: "; 
+			popupContent += feature.properties.id;
+			popupContent +=" ";
+			popupContent += "dateTime:"; 
+			popupContent += feature.properties.dateTime;
+			popupContent += "</div>"; 
+			/*
+			popupContent += "</p>"; 
+			popupContent += "<p> ID"; 
+			popupContent += feature.properties.id;
+			popupContent += "</p>"; 
+			popupContent += "<p> CODE"; 
+			popupContent += feature.properties.code;
+			popupContent += "</p>"; 
+			popupContent += "<p> ETA"; 
+			popupContent += feature.properties.eta;
+			popupContent += "</p>"; 
+*/
+			layer.bindPopup(popupContent);
+		}
+var path = {
+	    type: 'Feature',
+	    properties: {
+	        id: 1
+	    },
+	    geometry: {
+	        type: 'LineString',
+	        coordinates: []
+	    }
+	};
+	var showPosition=function(data){
+		L.geoJson(data, {
+			
+			style: function (feature) {
+				return feature.properties && feature.properties.style;
+			},
+
+			onEachFeature: onEachFeature,
+
+			pointToLayer: function (feature, latlng) {
+				return L.circleMarker(latlng, {
+					radius: 5,
+					fillColor: "#0000FF",
+					color: "#0000FF",
+					weight: 1,
+					opacity: 1,
+					fillOpacity: 0.8
+				});
+			}
+		}).addTo(map);
+	}
+	var pathlayer = L.geoJson().addTo(map);
+	
+		$.getJSON( /*[[@{~/data}]]*/
+				, function( data ) {
+			
+					map.panTo([data.features[1].geometry.coordinates[1],data.features[1].geometry.coordinates[0]],13);
+					$.each(data.features, function(index,value) {
+			            //console.log(value.geometry.coordinates);
+			            path.geometry.coordinates.push(value.geometry.coordinates);
+			            });
+					showPosition(data);
+					pathlayer.addData(path);
+
+		});
+
+/*]]>*/
+  </script>
+
+</th:block>
+   
+
+ </div>

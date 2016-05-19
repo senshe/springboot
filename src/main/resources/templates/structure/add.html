@@ -1,0 +1,43 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                         add structure
+                        </div>
+		
+			<div class="panel-body">
+			<form  class="input-group-lg"	action="#" th:action="@{/structure/add}"  method="post">
+   
+	<div class="form-group">
+	  <label class="control-label">Nom de la stucture</label>
+	  <input type="text" class="form-control" th:value="${structure.nom}" name="nom"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">Descroption de la stucture</label>
+	  <input type="text" class="form-control" th:value="${structure.descr}" name="descr"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">NNI</label>
+	  <input type="text" class="form-control" th:value="${admin.nni}" name="nni"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">Nom de l'admin</label>
+	  <input type="text" class="form-control" th:value="${admin.username}" name="username"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">email</label>
+	  <input type="text" class="form-control" th:value="${admin.email}" name="email"/>
+	</div>
+
+
+   <input type="submit" value="OK"/>
+   <a th:href="@{~/structure}"><h3>annuler</h3> </a>
+</form>
+			
+			</div>
+		</div>
+	</div>
+</div>

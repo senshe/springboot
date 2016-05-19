@@ -1,0 +1,31 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                         add structure
+                        </div>
+		
+			<div class="panel-body">
+			<form  class="input-group-lg"	action="#" th:action="@{/user/edit}"  method="post">
+   
+	<div class="form-group">
+	  <label class="control-label">Nom</label>
+	  <input type="text" class="form-control" th:value="${user.nom}" name="nom"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">le nouveu password</label>
+	  <input type="text" class="form-control" th:value="${user.password}" name="descr"/>
+	</div>
+
+	
+
+
+   <input type="submit" value="OK"/> <a th:href="@{/structure}"><h3>annuler</h3> </a>
+   
+</form>
+			
+			</div>
+		</div>
+	</div>
+</div>

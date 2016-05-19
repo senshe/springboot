@@ -1,0 +1,17 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="Layout"
+	layout:fragment="content"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+
+   
+   
+   <p>HOME</p>
+   <span sec:authentication="name">Bob</span>
+   <span sec:authentication="principal.authorities">[]</span>
+   
+  
+
+<div sec:authorize="hasAuthority('ADMIND')">
+ ici pour les users
+</div>
+ </div>

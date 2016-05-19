@@ -1,0 +1,84 @@
+<div ng-app="demoapp" 	xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content">
+  
+
+    <div ng-controller="BasicFirstController">
+  	  <leaflet lf-center="center"	 geojson="geojson"	markers="markers"	width="100%" height="560px"></leaflet>
+  	  
+  	  {{k}}
+ 	 </div>
+   
+<th:block layout:fragment="script">
+  <script  th:src="@{~/js/angular.js}"></script>
+<script  th:src="@{~/leaflet/leaflet.js}"></script>
+<script  th:src="@{~/js/angular-leaflet-directive.min.js}"></script> 
+<script>
+var app = angular.module("demoapp", ['leaflet-directive']);
+app.controller("BasicFirstController", [ "$scope","$http", "$interval","leafletData",function($scope,$http,$interval,leafletData) {
+	
+	
+	var	k;
+	 angular.extend($scope, {
+         center: {
+             lat: 14.683318,
+             lng: -17.45907,
+             zoom: 19
+         },
+         geojson : {
+             data: {},
+             style: {
+                 fillColor: "green",
+                     weight: 2,
+                     opacity: 1,
+                     color: 'white',
+                     dashArray: '3',
+                     fillOpacity: 0.7
+             }
+         },
+         markers: {
+             m1: {
+                 lat: 14.684230,
+                 lng:-17.458164,
+                 focus: true,
+                 draggable: true,
+                 message: "Hi there!",
+                 icon: {}
+             }
+         }
+         ,
+         lolo:k
+     });
+
+     $scope.updateGeojson = function() {
+     $http.get("/suiviapi/+221784869278").success(function(data, status) {
+     $scope.geojson.data=data;
+     
+     leafletData.getMap().then(function(map) {
+         var latlngs = [];
+         for (var i in $scope.geojson.data.features[0].geometry.coordinates) {
+             var coord = $scope.geojson.data.features[0].geometry.coordinates[i];
+             for (var j in coord) {
+                 var points = coord[j];
+                 for (var k in points) {
+                     latlngs.push(L.GeoJSON.coordsToLatLng(points[k]));
+                 }
+             }
+         }
+         k=latlngs;
+        // map.fitBounds(latlngs);
+     });
+     
+     
+     });
+      };
+     $interval($scope.updateGeojson, 1000*1);
+      
+     
+
+}]);
+
+
+  </script>
+</th:block>
+   
+
+ </div>

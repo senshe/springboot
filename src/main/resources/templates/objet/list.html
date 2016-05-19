@@ -1,0 +1,40 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                         add structure
+                        </div>
+		
+			<div class="panel-body">
+				<div class="table-responsive"	th:unless="${#lists.isEmpty(vehicles)}">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>#</th>
+                                            <th>Proprietaire</th>
+                                            <th>Description</th>
+                                            <th>Motif</th>
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                       <tr th:each="row: ${vehicles}">
+							                <td th:text="${row.matricule}"></td>
+							                <td th:text="${row.proprietaire}"></td>
+							                 <td th:text="${row.descr}"></td>
+							                 <td th:text="${row.motif}"></td>
+							                <td><a th:href="@{/objet/track/{id}(id=${row.matricule})}">tracker</a></td>
+							                <td><a th:href="@{/vehicles//{num}(num=${row.matricule})}">detail</a></td>
+							                <td><a th:href="@{/vehicles/supp/{num}(num=${row.matricule})}">supprimer</a></td>
+							                
+							             </tr>
+                                    </tbody>
+                                   
+                                </table>
+                            </div>
+			</div>
+			
+		
+		</div>
+	</div>
+</div>

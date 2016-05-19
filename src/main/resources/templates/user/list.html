@@ -1,0 +1,35 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                         add structure
+                        </div>
+		
+			<div class="panel-body">
+			<div class="table-responsive"	th:unless="${#lists.isEmpty(users)}">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                           
+                                            <th>Nom</th>
+                                            <th>NNI</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="row: ${users}">
+							                <td th:text="${row.username}"></td>
+							                <td th:text="${row.nni}"></td>
+							                <td><a th:href="@{/user/{id}(id=${row.nni})}">detail</a></td>
+							                <td><a th:href="@{/user/edit/{id}(id=${row.nni})}">Modifier</a></td>
+							                <td><a th:href="@{/user/{id}(id=${row.nni})}">supprimer</a></td>
+							                
+							             </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+			</div>
+			
+		
+		</div>
+	</div>
+</div>

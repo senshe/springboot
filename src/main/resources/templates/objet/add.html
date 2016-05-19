@@ -1,0 +1,56 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                    
+                        </div>
+		
+			<div class="panel-body">
+			<form  class="input-group-lg"	action="#" th:action="@{/objet/add}"  method="post">
+   
+	<div class="form-group">
+	  <label class="control-label">Matricule</label>
+	  <input type="text" class="form-control" th:value="${vehicle.matricule}" name="matricule"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">Date debut de suivi</label>
+	  <input type="text" class="form-control" th:value="${vehicle.dateDSuivi}" name="dateDSuivi"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">Date de fin du suivi</label>
+	  <input type="text" class="form-control" th:value="${vehicle.dateFSuivi}" name="dateFSuivi"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">le proprietaire</label>
+	  <input type="text" class="form-control" th:value="${vehicle.proprietaire}" name="proprietaire"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">type de la voiture</label>
+	  <input type="text" class="form-control" th:value="${vehicle.type}" name="type"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">type de motive</label>
+	  <input type="text" class="form-control" th:value="${vehicle.motif}" name="motif"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">Descroption </label>
+	  <input type="text" class="form-control" th:value="${vehicle.descr}" name="descr"/>
+	</div>
+	
+	<div class=" form-group">
+	  <label class="control-label">l'equpement de suivi</label>
+	  
+	<select class="form-control"	th:value="${idequipement}" name="idequipement">
+	    <option th:each="equipement:${equipements}" th:value="${equipement.num}" th:text="${equipement.num}"></option>
+	</select>
+	</div>
+
+   <input type="submit" value="OK"/>
+  
+</form>
+			
+			</div>
+		</div>
+	</div>
+</div>

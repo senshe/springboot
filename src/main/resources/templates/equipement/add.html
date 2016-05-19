@@ -1,0 +1,65 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                        <div th:text="#{structur}"></div>
+                        </div>
+		
+			<div class="panel-body">
+			<form  class="input-group-lg"	action="#" th:action="@{/equipement/add}"  method="post">
+   
+	<div class="form-group">
+	  <label class="control-label">Numero de telephone</label>
+	  <input type="text" class="form-control" th:value="${equipement.num}" name="num"/>
+	</div>
+	<div class="form-group">
+	  <label class="control-label">Serial Number</label>
+	  <input type="text" class="form-control" th:value="${equipement.sn}" name="sn"/>
+	</div>
+	
+
+	<div class=" form-group">
+	  <label class="control-label">type d'alimentation </label>
+	  <input type="text" class="form-control" th:value="${equipement.typeAlimentation}" name="typeAlimentation"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">date de debut du service</label>
+	  <input type="text" th:id="date_d_service" class="form-control" th:value="${equipement.dateDService}" name="dateDService"/>
+	</div>
+
+	<div class=" form-group">
+	  <label class="control-label">date de fin du service</label>
+	  <input type="text" class="form-control" th:id="date_f_service" th:value="${equipement.dateFService}" name="dateFService"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">Descroption </label>
+	  <input type="text" class="form-control" th:value="${equipement.descr}" name="descr"/>
+	</div>
+	<div class=" form-group">
+	  <label class="control-label">la structure</label>
+	  
+	<select class="form-control"	th:value="${idstructure}" name="idstructure">
+	    <option th:each="structure:${structures}" th:value="${structure.id}" th:text="${structure.nom}"></option>
+	</select>
+	</div>
+
+
+   <input type="submit" value="OK"/>
+</form>
+			
+			</div>
+		</div>
+	</div>
+<th:block layout:fragment="code">
+<script type="text/javascript" th:inline="javascript">
+/*<![CDATA[*/
+
+            $(function () {
+  						    $("#date_d_service").datepicker({format:"yyyy/mm/dd"});
+  						    $("#date_f_service").datepicker();
+   					 });
+/*]]>*/
+  </script>
+</th:block>
+</div>

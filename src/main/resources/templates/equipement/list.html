@@ -1,0 +1,38 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                         lists des equipements
+                        </div>
+		
+			<div class="panel-body">
+			<div class="table-responsive"	th:unless="${#lists.isEmpty(equipements)}">
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            
+                                            <th>Numero de telephone</th>
+                                            <th>Description</th>
+                                            <th>Eta</th>
+                                        </tr>
+                                    </thead>
+                                     <tbody>
+                                       <tr th:each="row: ${equipements}">
+							                <td th:text="${row.num}"></td>
+							                <td th:text="${row.descr}"></td>
+							                 <td th:text="${row.eta}"></td>
+							                <td><a th:href="@{/equipement/edit/{num}(num=${row.num})}">Modifier</a></td>
+							                <td><a th:href="@{/equipement/{num}(num=${row.num})}">detail</a></td>
+							                  <td><a th:href="@{/equipement/supp/{num}(num=${row.num})}">supprimer</a></td>
+							                
+							             </tr>
+                                    </tbody>
+                                   
+                                </table>
+                            </div>
+			</div>
+			
+		
+		</div>
+	</div>
+</div>

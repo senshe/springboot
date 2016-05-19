@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+<title>Liste of Points</title>
+ <link th:href="@{css/custom.css}" rel="stylesheet" media="screen"/>
+<link th:href="@{webjars/bootstrap/3.3.6/css/bootstrap.min.css}" rel="stylesheet" media="screen" />
+ 
+</head>
+<body>
+Bonjour tout le modnde
+
+
+<div class="container">
+    <div class="jumbotron">
+       
+        <table>
+<thead>
+<tr><td>id</td><td>point</td></tr>
+</thead>
+<tbody>
+<tr th:each="p:${points}">
+
+<td th:text="${p.id}"> </td>
+<td th:text="${p.geom}"> </td>
+
+</tr>
+
+    
+</tbody>
+</table>
+    </div>
+</div>
+<script  th:src="@{/webjars/jquery/2.2.3/jquery.min.js}"></script>
+</body>
+</html>

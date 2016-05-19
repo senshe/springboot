@@ -1,0 +1,64 @@
+<div xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"	layout:decorator="Layout"	layout:fragment="content"	class="row"	>
+	<div class="col-md-12">           
+		<div class="panel panel-default"> 
+		<div class="panel-heading">
+                        <h2><label th:text="${structure.nom}"></label></h2>
+                        <label th:text="${structure.descr}"></label>
+       </div>
+		
+			<div class="panel-body">
+			
+			<div class="col-md-6">
+				<div class="table-responsive"	th:unless="${#lists.isEmpty(structure)}">
+	                                <table class="table table-hover">
+	                                    <thead>
+	                                    <tr>
+		                                    
+		                                    <td>username</td>
+		                                    
+		                                    <td>lastlogin</td>
+	                                    </tr>
+	                                    
+	                                    </thead>
+	                                 <tbody>
+                                        <tr th:each="row: ${structure.users}">
+							                
+							                <td th:text="${row.username}"></td>
+							                
+							                <td th:text="${row.lastlogin}"></td>
+							             </tr>
+                                    </tbody>
+	                                    </table>
+	            </div>
+			</div>
+			<div class="col-md-6">
+				<div class="table-responsive"	th:unless="${#lists.isEmpty(structure)}">
+	                                <table class="table table-hover">
+	                                    <thead>
+	                                    <tr>
+		                                    <td>Numero telephone</td>
+		                                    <td>Description</td>
+		                                 		                                    
+	                                    </tr>
+	                                    
+	                                    </thead>
+	                                 <tbody>
+                                        <tr th:each="row: ${structure.equipements}">
+							                <td th:text="${row.num}"></td>
+							                <td th:text="${row.descr}"></td>
+							                
+							             </tr>
+                                    </tbody>
+	                                    </table>
+	                                    
+	            </div>
+			
+			</div>
+			 <a th:href="@{/structure}">
+			 <h3>annuler</h3> </a>
+			</div>
+			
+		
+		</div>
+	</div>
+</div>

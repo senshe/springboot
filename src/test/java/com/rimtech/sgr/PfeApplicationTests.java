@@ -1,0 +1,20 @@
+package com.rimtech.sgr;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+
+import com.rimitech.sgr.PfeApplication;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@SpringApplicationConfiguration(classes = PfeApplication.class)
+@WebAppConfiguration
+public class PfeApplicationTests {
+
+	@Test
+	public void contextLoads() {
+	}
+
+}
